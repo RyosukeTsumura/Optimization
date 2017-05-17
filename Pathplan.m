@@ -92,7 +92,7 @@ for i=1:N
     % boundary2
     [solX,solY] = solve([boundary2 == 0,path(i) == 0], [X,Y]);
     solX = sort(abs(solX), 1);solY = sort(abs(solY), 1);
-    cp3 = [double(solX(1)),double(solY(1))];
+    cp3(i,:) = [double(solX(1)),double(solY(1))];
     angle3(i) = atan(double(subs(df_boundary, X, cp3(1,1))));
     angle3(i) = radtodeg(angle3(i));
 
@@ -103,9 +103,9 @@ for i=1:N
     end
     
     % each angle
-    delta_ang1(i) = 90-(angle0-angle1);
-    delta_ang2(i) = 90-(angle0-angle2);
-    delta_ang3(i) = 90-(angle0-angle3);    
+    delta_ang1(i) = 90-(angle0(i)-angle1(i));
+    delta_ang2(i) = 90-(angle0(i)-angle2(i));
+    delta_ang3(i) = 90-(angle0(i)-angle3(i));    
     
 
     plot(ip(i,1),row-ip(i,2),'o');
